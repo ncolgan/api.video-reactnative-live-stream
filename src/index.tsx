@@ -59,6 +59,7 @@ const LIVE_STREAM_PROPS_DEFAULTS: NativeLiveStreamProps = {
 export type ApiVideoLiveStreamMethods = {
   startStreaming: (streamKey: string, url?: string) => Promise<boolean>;
   stopStreaming: () => void;
+  stopPreview: () => void;
   setZoomRatio: (zoomRatio: number) => void;
 };
 
@@ -191,6 +192,9 @@ const ApiVideoLiveStreamView = forwardRef<
     stopStreaming: () =>
       nativeRef.current &&
       NativeLiveStreamCommands.stopStreaming(nativeRef.current),
+    stopPreview: () =>
+      nativeRef.current &&
+      NativeLiveStreamCommands.stopPreview(nativeRef.current),
     setZoomRatio: (zoomRatio: number) =>
       nativeRef.current &&
       NativeLiveStreamCommands.setZoomRatioCommand(

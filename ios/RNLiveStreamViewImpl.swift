@@ -181,6 +181,10 @@ public class RNLiveStreamViewImpl: UIView {
         isStreaming = false
         liveStream.stopStreaming()
     }
+    
+    @objc public func stopPreview() {
+        liveStream.stopPreview()
+    }
 
     @objc public func setZoomRatio(zoomRatio: CGFloat) {
         liveStream.zoomRatio = zoomRatio

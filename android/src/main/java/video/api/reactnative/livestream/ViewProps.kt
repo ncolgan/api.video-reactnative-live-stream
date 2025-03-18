@@ -48,6 +48,7 @@ object ViewProps {
   enum class Commands(val action: String) {
     START_STREAMING("startStreaming"),
     STOP_STREAMING("stopStreaming"),
+    STOP_PREVIEW("stopPreview"),
     ZOOM_RATIO("setZoomRatioCommand");
 
     companion object {

@@ -70,10 +70,11 @@ interface NativeCommands {
     viewRef: React.ElementRef<NativeLiveStreamViewType>,
     zoomRatio: Float
   ) => void;
+  stopPreview: (viewRef: React.ElementRef<NativeLiveStreamViewType>) => void;
 }
 
 export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
-  supportedCommands: ['startStreaming', 'stopStreaming', 'setZoomRatioCommand'],
+  supportedCommands: ['startStreaming', 'stopStreaming', 'setZoomRatioCommand', 'stopPreview'],
 });
 export default codegenNativeComponent<NativeLiveStreamProps>(
   'ApiVideoLiveStreamView'

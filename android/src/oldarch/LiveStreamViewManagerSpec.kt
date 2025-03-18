@@ -15,6 +15,7 @@ abstract class LiveStreamViewManagerSpec<T : View> : SimpleViewManager<T>() {
 
   abstract fun startStreaming(view: T, requestId: Int, streamKey: String, url: String?)
   abstract fun stopStreaming(view: T)
+  abstract fun stopPreview(view: T)
   abstract fun setZoomRatioCommand(view: T, zoomRatio: Float)
 
   override fun receiveCommand(root: T, commandId: String, args: ReadableArray?) {
@@ -28,6 +29,10 @@ abstract class LiveStreamViewManagerSpec<T : View> : SimpleViewManager<T>() {
 
       ViewProps.Commands.STOP_STREAMING.action -> {
         stopStreaming(root)
+      }
+      
+      ViewProps.Commands.STOP_PREVIEW.action -> {
+        stopPreview(root)
       }
 
       ViewProps.Commands.ZOOM_RATIO.action -> {

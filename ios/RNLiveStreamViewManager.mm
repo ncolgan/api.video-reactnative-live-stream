@@ -20,6 +20,7 @@ RCT_EXTERN_METHOD(startStreaming:
                   withStreamKey:(nonnull NSString)streamKey
                   withUrl:(NSString)url)
 RCT_EXTERN_METHOD(stopStreaming:(nonnull NSNumber *)reactTag)
+RCT_EXTERN_METHOD(stopPreview:(nonnull NSNumber *)reactTag)
 RCT_EXTERN_METHOD(setZoomRatioCommand:
                   (nonnull NSNumber *)reactTag
                   withZoomRatio:(nonnull NSNumber *)zoomRatio)

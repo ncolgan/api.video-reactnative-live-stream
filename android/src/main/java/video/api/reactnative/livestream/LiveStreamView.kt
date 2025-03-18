@@ -227,6 +227,10 @@ class LiveStreamView @JvmOverloads constructor(
   fun stopStreaming() {
     liveStream.stopStreaming()
   }
+  
+  fun stopPreview() {
+    liveStream.stopPreview()
+  }
 
   override fun close() {
     orientationManager.close()

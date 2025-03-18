@@ -112,6 +112,11 @@ class LiveStreamViewManager : LiveStreamViewManagerSpec<LiveStreamView>() {
   override fun stopStreaming(view: LiveStreamView) {
     view.stopStreaming()
   }
+  
+  @ReactMethod
+  override fun stopPreview(view: LiveStreamView) {
+    view.stopPreview()
+  }
 
   @ReactMethod
   override fun setZoomRatioCommand(view: LiveStreamView, zoomRatio: Float) {

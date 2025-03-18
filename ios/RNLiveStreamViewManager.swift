@@ -35,4 +35,12 @@ class RNLiveStreamViewManager: RCTViewManager {
             view.zoomRatio = zoomRatio.floatValue
         }
     }
+    
+    @objc(stopPreview:)
+    func stopPreview(_ reactTag: NSNumber) {
+        bridge!.uiManager.addUIBlock { (_: RCTUIManager?, viewRegistry: [NSNumber: UIView]?) in
+            let view: RNLiveStreamViewImpl = (viewRegistry![reactTag] as? RNLiveStreamViewImpl)!
+            view.stopPreview()
+        }
+    }
 }
