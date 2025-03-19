@@ -12,12 +12,7 @@
 #import <React/RCTFabricComponentsPlugins.h>
 
 
-// MARK: Swift classes in ObjC++
-#if __has_include("react-native-livestream/react_native_livestream-Swift.h")
-#import "react-native-livestream/react_native_livestream-Swift.h"
-#else
-#import "react_native_livestream-Swift.h"
-#endif
+#import <react_native_livestream/react_native_livestream-Swift.h>
 
 using namespace facebook::react;
 
@@ -43,7 +38,7 @@ using namespace facebook::react;
         _props = defaultProps;
 
         _view = [[RNLiveStreamViewImpl alloc] init];
-        
+
         _view.onConnectionSuccess = [self](NSDictionary *dictionary) {
             if (_eventEmitter) {
                 ApiVideoLiveStreamViewEventEmitter::OnConnectionSuccess data = {};
@@ -64,7 +59,7 @@ using namespace facebook::react;
                 std::static_pointer_cast<const ApiVideoLiveStreamViewEventEmitter>(_eventEmitter)->onDisconnect(data);
             }
         };
-        
+
         _view.onStartStreaming = [self](NSDictionary *dictionary) {
             if (_eventEmitter) {
                 NSString *error = [dictionary valueForKey:@"error"];
@@ -80,7 +75,7 @@ using namespace facebook::react;
                 std::static_pointer_cast<const ApiVideoLiveStreamViewEventEmitter>(_eventEmitter)->onStartStreaming(data);
             }
         };
-        
+
         self.contentView = _view;
    }
    return self;
@@ -93,7 +88,7 @@ using namespace facebook::react;
     const auto &newViewProps = *std::static_pointer_cast<const ApiVideoLiveStreamViewProps>(props);
 
     RNLiveStreamViewImpl *view = (RNLiveStreamViewImpl *)self.contentView;
-    
+
     NSString *newCamera = RCTNSStringFromStringNilIfEmpty(toString(newViewProps.camera));
     if (oldViewProps.camera != newViewProps.camera) {
         [view setCamera:newCamera];
@@ -108,13 +103,13 @@ using namespace facebook::react;
     } else if (view.video != newVideoConfig) {
         [view setVideo:newVideoConfig];
     }
-    
+
     if (oldViewProps.isMuted != newViewProps.isMuted) {
         [view setIsMuted:newViewProps.isMuted];
     } else if (view.isMuted != newViewProps.isMuted) {
         [view setIsMuted:newViewProps.isMuted];
     }
-    
+
     NSString *sampleRate = RCTNSStringFromStringNilIfEmpty(toString(newViewProps.audio.sampleRate));
     NSDictionary *newAudioConfig = @{ @"bitrate" : @(newViewProps.audio.bitrate), @"sampleRate" : @([sampleRate intValue]), @"isStereo" : @(newViewProps.audio.isStereo)};
     if ((oldViewProps.audio.bitrate != newViewProps.audio.bitrate) || (oldViewProps.audio.sampleRate != newViewProps.audio.sampleRate) || (oldViewProps.audio.isStereo != newViewProps.audio.isStereo)) {
@@ -122,19 +117,19 @@ using namespace facebook::react;
     } else if (view.audio != newAudioConfig) {
         [view setAudio:newAudioConfig];
     }
-    
+
     if (oldViewProps.zoomRatio != newViewProps.zoomRatio) {
         [view setZoomRatio:newViewProps.zoomRatio];
     } else if (view.zoomRatio != newViewProps.zoomRatio) {
         [view setZoomRatio:newViewProps.zoomRatio];
     }
-    
+
     if (oldViewProps.enablePinchedZoom != newViewProps.enablePinchedZoom) {
         [view setEnablePinchedZoom:newViewProps.enablePinchedZoom];
     } else if (view.enablePinchedZoom != newViewProps.enablePinchedZoom) {
         [view setEnablePinchedZoom:newViewProps.enablePinchedZoom];
     }
-    
+
     [super updateProps:props oldProps:oldProps];
 }
 
