@@ -201,10 +201,12 @@ public class RNLiveStreamViewImpl: UIView {
     @objc public var onDisconnect: (_ dictionnary: [String: Any]) -> Void = { _ in }
 
     @objc public var onStartStreaming: (_ dictionnary: [String: Any]) -> Void = { _ in }
-    
+
     @objc override public func removeFromSuperview() {
+        print("LIVESTREAM-DEBUG: removeFromSuperview start")
         super.removeFromSuperview()
         liveStream.stopPreview()
+        print("LIVESTREAM-DEBUG: removeFromSuperview end")
     }
 }
 
